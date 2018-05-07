@@ -1,0 +1,82 @@
+// navbar
+
+.navbar{
+	.navbar-form-sm{
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+	border-width: 0;
+	border-radius: 0;
+	margin: 0;
+}
+
+.navbar-brand{
+	float: none;
+	text-align: center;
+	font-size: 20px;
+	font-weight: 700;
+	height: auto;
+	line-height: @app-header-height;
+	display: inline-block;
+	padding: 0 20px;
+	&:hover{
+		text-decoration: none;
+	}
+	img{
+		max-height: 30px;
+		margin-top: -4px;
+		vertical-align: middle;
+		display: inline;
+	}	
+}
+
+.md-navbar{
+  min-height: 60px !important;
+  position: relative;
+  z-index: 50;
+  .navbar-header{
+    width: auto;
+	> button{
+	  padding: 15px 18px;
+	  font-size: 24px;
+	  line-height: 30px;
+	  text-decoration: none;
+	  background-color: transparent;
+	  border: none;
+	}
+  }
+  .navbar-brand{
+    line-height: 60px;
+  }
+}
+
+.md-aside{
+  width: 240px;
+  max-width: 240px;
+  position: relative;
+  z-index: 40;
+}
+
+.md-content{
+  display: block;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 767px){
+  .off-screen {
+	&.md-content{
+	  top: 60px;
+	  z-index: 45;
+	  max-width: 75%;
+	  + *{
+		padding-top: 60px;
+		z-index: 30;
+		> .md-content{
+		  overflow: hidden;
+		}
+	  }
+	}
+
+  }
+}

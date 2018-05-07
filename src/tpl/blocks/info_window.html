@@ -1,0 +1,7 @@
+<div ng-non-bindable="">
+    <h5 class="text-center">Remove this location from</h5>
+    <div class="text-center">
+        <button md-ink-ripple class="md-btn md-raised btn-fw red" data-ng-click="vm.removePoint(vm.point, 'map')" ng-class="{'m-r': vm.point.isTourPoint}">Map</button>
+        <button md-ink-ripple class="md-btn md-raised btn-fw red" data-ng-click="vm.removePoint(vm.point, 'tour')" data-ng-if="vm.point.isTourPoint">Tour</button>
+    </div>
+</div>

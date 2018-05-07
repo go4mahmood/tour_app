@@ -1,0 +1,35 @@
+<div class="bg-light b-b wrapper">
+  <div class="row">
+    <div class="col-sm-6 col-xs-12">
+      <h3 class="inline m-n">View the tour (Driver's view)
+        <i class="mdi-action-info-outline text-info v-middle clickable"
+           uib-tooltip="This is the driver's dispatched view"
+           tooltip-placement="right"></i></h3>
+    </div>
+  </div>
+</div>
+<div class="wrapper-md">
+
+  <div class="alert alert-info" data-ng-if="!vm.directionsSetting.allPoints.length">
+    The tour hasn't been setup yet. Please click on Edit tour button to set it up.
+  </div>
+
+  <ng-map zoom="13" center="[59.93, 10.76]" style="display:block;height:320px">
+    <marker ng-repeat="point in vm.route"
+            position="{{point.pos}}"
+            title="{{point.title}}"
+            data-ng-if="point.isTourPoint"></marker>
+
+    <directions ng-if="vm.directionsSetting.allPoints.length>1"
+                travel-mode="WALKING"
+                origin="{{vm.directionsSetting.start.pos[0]}}, {{vm.directionsSetting.start.pos[1]}}"
+                destination="{{vm.directionsSetting.end.pos[0]}}, {{vm.directionsSetting.end.pos[1]}}"
+                waypoints="{{vm.directionsSetting.theWaypoints}}"
+                suppress-markers="true">
+    </directions>
+  </ng-map>
+
+  <div class="text-right m-t">
+    <button md-ink-ripple class="md-btn md-raised btn-fw blue padder" ui-sref="way-points">Edit tour</button>
+  </div>
+</div>

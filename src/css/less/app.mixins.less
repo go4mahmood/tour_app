@@ -1,0 +1,67 @@
+.color-variant(@bg-color: #555, @lt-percent: 10%, @lter-percent: 15%, @dk-percent: 10%, @dker-percent: 15%) {
+	background-color: @bg-color;
+}
+
+.color-schema(@bg-color: #555, @percent: 15%, @sat-percent){
+  background-color: saturate(darken(@bg-color, @percent), @sat-percent);
+}
+
+.font-variant(@bg-color){
+  @font-color:  desaturate(lighten(@bg-color,40%), 10%);
+  @link-color:  desaturate(lighten(@bg-color,50%), 10%);
+  @hover-color: #fff;
+  color: @font-color;
+	a {
+		color: @link-color;
+		&:hover{
+			color: @hover-color;
+		}
+	}
+	.nav {
+		> li {
+      &:hover,
+      &:focus,
+      &.active{
+        > a{
+          /*color: @hover-color;*/
+          color: #9fdad7;
+          .color-schema(@bg-color, 5%, 2.5%);
+        }
+      }
+			> a{
+				color: darken(@link-color, 5%);
+        &:hover,
+        &:focus{
+          .color-schema(@bg-color, 3%, 2.5%);
+        }
+			}
+		}
+	}
+  &.navbar .nav{
+    > li.active > a{
+      color: @hover-color;
+      .color-schema(@bg-color, 5%, 2.5%);
+    }
+  }
+  .text-lt {
+    color: lighten(@font-color, 25%) !important;
+  }
+}
+
+.transition-transform(@transition) {
+  -webkit-transition: -webkit-transform @transition;
+  -moz-transition: -moz-transform @transition;
+  -o-transition: -o-transform @transition;
+  transition: transform @transition;
+}
+
+.backface-visibility(@visibility){
+  -webkit-backface-visibility: @visibility;
+  -moz-backface-visibility: @visibility;
+  backface-visibility: @visibility;
+}
+
+.translate3d(@x, @y, @z) {
+  -webkit-transform: translate3d(@x, @y, @z);
+  transform: translate3d(@x, @y, @z);
+}

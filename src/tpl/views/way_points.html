@@ -1,0 +1,43 @@
+<div class="bg-light b-b wrapper">
+  <div class="row">
+    <div class="col-sm-6 col-xs-12">
+      <h3 class="inline m-n">Tour Setup
+          <i class="mdi-action-info-outline text-info v-middle clickable"
+             uib-tooltip="This is the tour setup view"
+             tooltip-placement="right"></i></h3>
+    </div>
+  </div>
+</div>
+<div class="wrapper-md">
+    <div class="alert alert-info">
+        Click on the map to add locations to your tour. Drag the marker to change the location. Click on the location to remove it.
+    </div>
+
+    <ng-map zoom="13" center="[59.93, 10.76]" style="display:block;height:320px" on-click="vm.placeMarker()">
+      <info-window id="info_window" template="src/tpl/blocks/info_window.html"></info-window>
+
+      <marker ng-repeat="point in vm.route"
+              position="{{point.pos}}"
+              title="{{point.title}}"
+              id="{{point.id}}"
+              on-click="vm.showInfo(point)"
+              draggable="true"
+              on-dragend="vm.dragEnd(point)"></marker>
+
+      <directions ng-if="vm.directionsSetting.allPoints.length>1"
+                  travel-mode="WALKING"
+                  origin="{{vm.directionsSetting.start.pos[0]}}, {{vm.directionsSetting.start.pos[1]}}"
+                  destination="{{vm.directionsSetting.end.pos[0]}}, {{vm.directionsSetting.end.pos[1]}}"
+                  waypoints="{{vm.directionsSetting.theWaypoints}}"
+                  suppress-markers="true">
+      </directions>
+    </ng-map>
+
+    <div class="text-right m-t">
+        <button md-ink-ripple
+                class="md-btn md-raised btn-fw green padder"
+                ui-sref="view-tour"
+                data-ng-disabled="!vm.directionsSetting.allPoints.length">Dispatch the tour</button>
+    </div>
+
+</div>
